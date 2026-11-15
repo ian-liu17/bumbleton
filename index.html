@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="bumbleton-code" content="BUMBLE-2V9G56ES">
+  <title>My Robot Game</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
+      background: #fff8df;
+      color: #24204a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 18%, #ffcf5a 0 7px, transparent 8px),
+        radial-gradient(circle at 83% 23%, #ff786b 0 9px, transparent 10px),
+        radial-gradient(circle at 17% 78%, #73d6c1 0 8px, transparent 9px),
+        radial-gradient(circle at 86% 77%, #9a8bff 0 7px, transparent 8px),
+        #fff8df;
+    }
+
+    main {
+      position: relative;
+      width: min(90vw, 680px);
+      padding: clamp(2.5rem, 8vw, 5rem) 2rem;
+      text-align: center;
+      border: 4px solid #24204a;
+      border-radius: 32px;
+      background: #fffdf6;
+      box-shadow: 12px 12px 0 #ff786b;
+      isolation: isolate;
+    }
+
+    .paint {
+      position: absolute;
+      z-index: -1;
+      border-radius: 50%;
+      opacity: .8;
+    }
+
+    .paint-one {
+      width: 130px;
+      height: 130px;
+      top: -50px;
+      left: -45px;
+      background: #ffcf5a;
+    }
+
+    .paint-two {
+      width: 100px;
+      height: 100px;
+      right: -34px;
+      bottom: -30px;
+      background: #73d6c1;
+    }
+
+    .eyebrow {
+      margin: 0 0 .75rem;
+      color: #6558bf;
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 9vw, 5rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+
+    .robot {
+      display: block;
+      margin: 1.5rem auto;
+      font-size: clamp(4rem, 14vw, 7rem);
+      line-height: 1;
+      filter: drop-shadow(5px 5px 0 #ffcf5a);
+    }
+
+    h2 {
+      margin: 0 0 1.5rem;
+      font-size: clamp(1.35rem, 5vw, 2rem);
+    }
+
+    button {
+      min-width: 150px;
+      padding: .9rem 2rem;
+      border: 3px solid #24204a;
+      border-radius: 999px;
+      background: #ff786b;
+      box-shadow: 0 6px 0 #24204a;
+      color: #24204a;
+      font: inherit;
+      font-size: 1.25rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .12s, box-shadow .12s;
+    }
+
+    button:hover { transform: translateY(-2px); }
+    button:active { transform: translateY(5px); box-shadow: 0 1px 0 #24204a; }
+    button:focus-visible { outline: 4px solid #6558bf; outline-offset: 5px; }
+
+    #message {
+      min-height: 1.5em;
+      margin: 1.25rem 0 0;
+      color: #6558bf;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="paint paint-one" aria-hidden="true"></span>
+    <span class="paint paint-two" aria-hidden="true"></span>
+    <p class="eyebrow">A tiny game for big imaginations</p>
+    <h1>My Robot Game</h1>
+    <span class="robot" aria-hidden="true">🤖</span>
+    <h2>Press the button!</h2>
+    <button id="go" type="button">GO</button>
+    <p id="message" aria-live="polite"></p>
+  </main>
+  <script>
+    const messages = ["Beep boop! Nice work!", "Robot power activated!", "You made the robot dance!"];
+    let turns = 0;
+    document.querySelector("#go").addEventListener("click", () => {
+      document.querySelector("#message").textContent = messages[turns++ % messages.length];
+    });
+  </script>
+</body>
+</html>
